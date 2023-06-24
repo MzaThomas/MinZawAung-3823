@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<div class="container">
+	<br/>
+	<h1 class="float-right"> Update resume </h1>
+	<br/>
+	<form method="POST" action="/hr_recruitments/update/{{form.instance.id}}/" enctype="multipart/form-data">
+		{% csrf_token %}
+		
+		<div class="form-group">
+			<a href="javascript:history.back()" class="btn btn-dark"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back </a>
+			<input type="submit" value="Update" class="btn btn-info" onclick="return confirmAction('save this form');">
+            <!-- Confirmation Modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Form Update</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Confirmation message will be dynamically inserted here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <input type="submit" value="Confirm" class="btn btn-info" onclick="return performAction()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+		{{ form.as_p }}
+		{% if uploaded_image %}
+			<p>File uploaded at: <a href="{{uploaded_image_url}}">{{uploaded_image}}</a></p>
+		{% endif %}
+	</form>
+</div>
+{% endblock %}

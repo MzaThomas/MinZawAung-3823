@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %} Contracts {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Create Contract </h1>
+    <br/>
+
+    <form method="POST" action="/hr_contracts/new_contract/" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <a href="javascript:history.back()" class="btn btn-dark"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back </a>
+            <input type="submit" value="Create" class="btn btn-info">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form.name.label_tag }} {{ form.name }}
+            </div>
+
+            <div class="form-group col-md-6">
+                {{ form.rank.label_tag }} {{ form.rank }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.email.label_tag }} {{ form.email }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.start_date.label_tag }} {{ form.start_date }}
+            </div>
+
+             <div class="form-group col-md-4">
+                {{ form.end_date.label_tag }} {{ form.end_date }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.duration.label_tag }} {{ form.duration }}
+            </div>
+
+             <div class="form-group col-md-4">
+                {{ form.note.label_tag }} {{ form.note }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.status.label_tag }} {{ form.status }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form.create_date.label_tag }} {{ form.create_date }} 
+            </div>
+
+            <div class="form-group col-md-6">
+                {{ form.employee.label_tag }} {{ form.employee }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.tags.label_tag }} {{ form.tags }}
+        </div>
+
+        <div class="form-group">
+            {{ form.is_active.label_tag }} {{ form.is_active }} 
+        </div>
+
+        <div class="form-group">
+            {{ form.attachment.label_tag }} {{ form.attachment }}
+        </div>
+
+    </form>
+</div>
+{% endblock %}

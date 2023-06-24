@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Expense Details </h1>
+    <br/>
+
+    <form class="mt-5" method="POST" action="/hr_expenses/new_expense/" enctype="multipart/form-
+    data">
+        {% csrf_token %}
+        <div class="form-group">
+            <a class="btn btn-dark" href="/hr_expenses/show_expense"><i class="fa fa-arrow-left"
+            aria-hidden="true"></i> Back </a>
+            <a class="btn btn-info" href="/hr_expenses/update/{{expense.id}}/"> Update </a>
+            <button class="btn btn-danger" onclick="return confirmAction('delete this form')">Delete</button>
+            <!-- Confirmation Modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Form Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Confirmation message will be dynamically inserted here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-danger" href="/hr_expenses/delete/{{expense.id}}/" onclick="return performAction()">Confirm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Name </label>
+                    <div class="col-md-9">
+                        <input type='text' name='name' value='{{expense.name}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Employee </label>
+                    <div class="col-md-9">
+                        <input type='text' name='employee' value='{{expense.employee}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Department </label>
+                    <div class="col-md-9">
+                        <input type='text' name='department' value='{{expense.department}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Description </label>
+                    <div class="col-md-9">
+                        <input type='text' name='description' value='{{expense.description}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Total Expense </label>
+                    <div class="col-md-9">
+                        <input type='text' name='total_expense' value='{{expense.total_expense}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Paid By </label>
+                    <div class="col-md-9">
+                        <input type='text' name='paid_by' value='{{expense.paid_by}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Expense Date </label>
+                    <div class="col-md-9">
+                        <input type='text' name='expense_date' value='{{expense.expense_date}}' class="form-control" readonly/> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Tags </label>
+                    <div class="col-md-9">
+                        {% for tag in expense.tags.all %}
+                            <a href="#" class="badge badge-pill badge-info"> {{tag}} </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

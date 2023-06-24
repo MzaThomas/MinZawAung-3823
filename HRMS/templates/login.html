@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block body_block %}
+{% load static %}
+<head>
+	<style>
+		body {
+			   background: rgb(0,210,255);
+				background: linear-gradient(90deg, rgba(0,210,255,1) 0%, rgba(124,255,252,1) 75%, rgba(211,247,255,1) 100%); 
+			/*background-image: url("{% static 'bg.jpg' %}");
+			background-size: cover;*/
+		}
+		img {
+			width: 250px;
+			height: 250px;
+			margin-top: -50px;
+		}
+
+		.card {
+			margin: 100px auto;
+			width: 65%;
+		}
+
+		.card-header {
+			background-color: #e8fbff;
+			padding-left: 65px;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		.card-title {
+			padding-left: 50px;
+			margin-bottom: 30px;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		.row{
+			padding-left: 50px;
+		}
+
+		.login {
+			background-color: #5FB8B6;
+			color: white;
+		}
+
+		.alert {
+			font-family: Tahoma, Verdana, sans-serif;
+			font-weight: normal;
+		}
+	</style>
+<body>
+	<div class="card">
+		<h4 class="card-header">Human Resource Management System</h4>
+
+		<div class="card-body"><h5 class="card-title">Login Form</h5>
+			<div class="row">
+				<!-- <div class="col-md-1">
+				</div> -->
+
+				<div class="col-md-6">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-row mb-3">
+							<div class="col-auto">
+			      				<i class="fas fa-user mt-2"></i>
+			    			</div>
+
+			    			<div class="col">
+								<input type='text' name='username' placeholder='Username' class="form-control mb-2" required/>
+							</div>
+						</div>
+
+						<div class="form-row mb-4">
+							<div class="col-auto">
+			      				<i class="fas fa-lock mt-2"></i>
+			    			</div>
+
+			    			<div class="col">
+								<input type='password' name='password' placeholder='Password' class="form-control mb-2" required/>
+							</div>
+						</div>
+
+						
+
+		                {% if messages %}
+						        {% for message in messages %}
+						            <div class="alert alert-danger" role="alert">
+		                    			{{ message }}
+		                			</div>
+						        {% endfor %}
+						{% endif %}
+
+						<!-- {% if messages %}
+						    <ul class="messages">
+						        {% for message in messages %}
+						            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+						        {% endfor %}
+						    </ul>
+						{% endif %} -->
+							<!-- {% if error_message %}
+								<p class="text-danger">{{ error_message }}</p>
+							{% endif %} -->
+							<input type="submit" value="Log In" class="login btn btn-block mt-2">
+					</form>	
+				</div>
+
+				<div class="col-md-1">
+				</div>
+
+				<div class="col-md-4">
+					<center><img src="{% static 'login.png' %}"/></center>
+				</div>
+
+				
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock body_block %}

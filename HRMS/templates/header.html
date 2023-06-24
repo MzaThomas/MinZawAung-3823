@@ -1,0 +1,116 @@
+{% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark sticky-top">  
+		<a class="navbar-brand" href="#"> <i class="fas fa-tasks"></i> HRMS </a>  
+
+		<div class="navbar-collapse justify-content-end">
+	        <ul class="navbar-nav">  
+	            <li class="nav-item">
+	                <a class="nav-link" href="/hr_employees/show_employee">Home</a>
+	            </li>
+	            
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Employees
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_employees/show_employee">Employee List</a>
+	                  <a class="dropdown-item" href="/hr_employees/new_employee">Employee Create</a>
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Contracts
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_contracts/show_contract">Contract List</a>
+	                  <a class="dropdown-item" href="/hr_contracts/new_contract">Contract Create</a> 
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Jobs Position
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_jobs/show_job">Job List</a>
+	                  <a class="dropdown-item" href="/hr_jobs/new_job">Job Create</a> 
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Departments
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_departments/show_department">Department List</a>
+	                  <a class="dropdown-item" href="/hr_departments/new_department">Department Create</a> 
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Recruitments
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_recruitments/show_resume">Resume List</a>
+	                  <a class="dropdown-item" href="/hr_recruitments/new_resume">Resume Create</a> 
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Attendance
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_attendance/show_attendance">Attendance List</a>
+	                  <a class="dropdown-item" href="/hr_attendance/new_attendance">Attendance Create</a> 
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Payroll
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_payroll/show_payroll">Payroll List</a>
+	                  <a class="dropdown-item" href="/hr_payroll/new_payroll">Payroll Create</a> 
+	                </div>
+	            </li>
+
+	             <li class="nav-item dropdown">
+	                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  Expenses
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="/hr_expenses/show_expense">Expense List</a>
+	                  <a class="dropdown-item" href="/hr_expenses/new_expense">Expense Create</a> 
+	                </div>
+	            </li>
+
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link text-info" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                    <i class="far fa-user" aria-hidden="true"></i>
+	                    {{ user.get_full_name }}
+	                </a>
+	                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	                  <a class="dropdown-item" href="https://www.djangoproject.com"><i class="fas fa-info-circle"></i>&nbsp; Help </a>
+	                  <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout </a> 
+	                </div>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link">
+	                </a>
+	            </li>
+
+	            <li class="nav-item dropdown">
+	                <a class="nav-link">
+	                </a>
+	            </li>
+
+	        </ul> 
+	    </div>
+	</nav> 
+{% endif %} 

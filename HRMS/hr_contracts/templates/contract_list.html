@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %} Contracts {% endblock %}
+{% block body_block %}
+{% load static %}
+<div class="container">
+	<div class="mt-2 mb-3">
+		<h2> Contracts </h2>
+	</div>
+
+	<div class="float-right">
+        <form class="form-inline" action="/hr_contracts/search_by/">    
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
+            <button class="btn btn-info btn-lg" type="submit"> <i class="fas fa-search" aria-hidden="true"></i></button>
+        </form>
+    </div>
+
+    <div class="float-left">
+        <form class="form-inline" action="/hr_contracts/order_by/">    
+            <a class="btn btn-info mr-sm-2" href="/hr_contracts/new_contract/"> <i class="fa fa-plus" aria-hidden="true"></i> Create </a>
+
+            <button class="btn btn-outline-info mr-sm-2 {{ order_selected.name }}" type="submit" name="order" value="name">Name <i class="fas fa-sort-alpha-down-alt" aria-hidden="true"></i></button>
+
+            <button class="btn btn-outline-info mr-sm-2 {{ order_selected.age }}" type="submit" name="order" value="rank">Rank <i class="fas fa-sort-numeric-down-alt" aria-hidden="true"></i></button>
+
+            <button class="btn btn-outline-info mr-sm-2 {{ order_selected.address }}" type="submit" name="order" value="note">Note <i class="fas fa-sort-alpha-down-alt" aria-hidden="true"></i></button>
+        </form>
+    </div>
+
+	<br/>
+    <br/>
+
+    {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+    {% endif %}
+
+	<table class="table table-bordered table-hover">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">No.</th>
+				<th scope="col">Name</th>
+				<th scope="col">Rank</th>
+				<th scope="col">Email</th>
+				<th scope="col">Start</th>
+				<th scope="col">End</th>
+				<th scope="col">Duration(Month)</th>
+				<th scope="col">Note</th>
+				<th scope="col">Status</th>
+				<th scope="col">Active</th>
+				<th scope="col">Create Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for contract in page_obj %}
+				<tr class="clickable" onclick="window.location='/hr_contracts/detail/{{contract.id}}/'">
+					<td>{{ forloop.counter }}</td>
+					<td>{{ contract.name }}</td>
+					<td>{{ contract.rank }}</td>
+					<td>{{ contract.email }}</td>
+					<td>{{ contract.start_date }}</td>
+					<td>{{ contract.end_date }}</td>
+					<td>{{ contract.duration }}</td>
+					<td>{{ contract.note }}</td>
+					<td>{{ contract.status }}</td>
+					<td>{{ contract.is_active }}</td>
+					<td>{{ contract.create_date }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{% if page_obj.has_other_pages %}
+		<div style="display: flex; justify-content: center;">
+			<nav aria-label="Topics pagination" class="mb-4">
+				<ul class="pagination">
+					{% if page_obj.has_previous %}
+						<li class="page-item">
+							<a class="page-link" href="{% if request.GET.order %} ?order={{request.GET.order}}&page={{page_obj.previous_page_number}} {% else %} ?page={{page_obj.previous_page_number}} {% endif %}">Previous</a>
+
+						</li>
+					{% else %}
+						<li class="page-item disabled">
+							<span class="page-link">Previous</span>
+						</li>
+					{% endif %}
+
+					{% for page_num in page_obj.paginator.page_range %}
+						{% if page_obj.number == page_num %}
+							<li class="page-item active">
+								<span class="page-link">
+									{{ page_num }}
+									<span class="sr-only">(current)</span>
+								</span>
+							</li>
+						{% else %}
+							<li class="page-item">
+								<a class="page-link" href="{% if request.GET.order %} ?order={{request.GET.order}}&page={{page_num}} {% else %} ?page={{page_num}} {% endif %}">{{ page_num }}</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+
+					{% if page_obj.has_next %}
+						<li class="page-item">
+							<a class="page-link" href="{% if request.GET.order %} ?order={{request.GET.order}}&page={{page_obj.next_page_number}} {% else %} ?page={{page_obj.next_page_number}} {% endif %}">Next</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled">
+							<span class="page-link">Next</span>
+						</li>
+					{% endif %}
+				</ul>
+			</nav>
+		</div>
+	{% endif %}
+
+</div>
+{% endblock body_block %}
